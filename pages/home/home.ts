@@ -20,7 +20,16 @@ export class HomePage {
 
   GuardarDatos() {
     console.log(this.usuario.value);
-    localStorage.setItem("Nombre", "usuario.controls.nombre.value");
+    localStorage.setItem("'Nombre'", "'usuario.nombre.value'");
+    localStorage.setItem('usuario', JSON.stringify(this.usuario));
+  }
+
+  EliminarDatos() {
+    localStorage.removeItem("usuario");
+  }
+
+  DelAll() {
+    localStorage.clear();
   }
 
   constructor(public navCtrl: NavController, private fb: FormBuilder) {}
