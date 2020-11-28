@@ -1,13 +1,26 @@
 import { Component } from "@angular/core";
 import { NavController } from "ionic-angular";
-import { FormControl } from "@angular/forms";
+import {
+  FormControl,
+  ReactiveFormsModule,
+  FormGroup,
+  Validators,
+  FormBuilder
+} from "@angular/forms";
 
 @Component({
   selector: "page-home",
   templateUrl: "home.html"
 })
 export class HomePage {
-  name = new FormControl("");
+  usuario = this.fb.group({
+    nombre: ['', [Validators.required, Validators.minLength(4)]],
+    email: ['', Validators.email],
+  });
 
-  constructor(public navCtrl: NavController) {}
+  GuardarDatos() {
+    console.log(this.usuario.value);
+  }
+
+  constructor(public navCtrl: NavController, private fb: FormBuilder) {}
 }

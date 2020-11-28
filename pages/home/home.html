@@ -5,10 +5,32 @@
 </ion-header>
 
 <ion-content padding margin>
+	<form [formGroup]="usuario" (ngSubmit)="GuardarDatos()">
+		<ion-item>
+			<ion-label>Nombre:</ion-label>
+			<ion-input formControlName="nombre"></ion-input>
+		</ion-item>
+		<ion-label color="danger"
+			*ngIf="usuario.controls.nombre.errors?.required && (usuario.touched || usuario.dirty)">* El nombre es
+			obligatorio </ion-label>
+		<ion-label color="primary"
+			*ngIf="usuario.controls.nombre.errors?.minlength && (usuario.touched || usuario.dirty)">* El nombre tiene
+			que tener al menos 3 caracteres.</ion-label>
 
-	<ion-item>
-		<ion-label>Nombre</ion-label>
-		<ion-input [formControl]="nombre"></ion-input>
-	</ion-item>
+		<ion-item>
+			<ion-label>Email:</ion-label>
+			<ion-input formControlName="email"></ion-input>
+		</ion-item>
+		<ion-label color="danger" *ngIf="usuario.controls.email.errors?.email && (usuario.touched || usuario.dirty)">*
+			El email es obligatorio.</ion-label>
+
+
+		<p class="ion-padding">Hola {{ usuario.controls.nombre.value }} !</p>
+		<p class="ion-padding"> {{ usuario.controls.email.value }} </p>
+
+		<p class="ion-text-center">
+			<button type="submit" [disabled]="!usuario.valid">Guardar</button>
+		</p>
+	</form>
 
 </ion-content>
