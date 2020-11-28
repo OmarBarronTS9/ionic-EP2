@@ -14,12 +14,13 @@ import {
 })
 export class HomePage {
   usuario = this.fb.group({
-    nombre: ['', [Validators.required, Validators.minLength(4)]],
-    email: ['', Validators.email],
+    nombre: ["", [Validators.required, Validators.minLength(4)]],
+    email: ["", Validators.email]
   });
 
   GuardarDatos() {
     console.log(this.usuario.value);
+    localStorage.setItem("Nombre", "usuario.controls.nombre.value");
   }
 
   constructor(public navCtrl: NavController, private fb: FormBuilder) {}
